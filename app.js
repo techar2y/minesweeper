@@ -127,11 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return
         }
 
+        cellsToWin--
+        console.log(cellsToWin)
         cells[row][column].state = 'opened'
-        let div = document.createElement("div")
         cell.setAttribute('data-state', 'opened')
-        let cellStyle = getComputedStyle(cell)
         cell.style.color = colorMap.get(cells[row][column].cntNeighbors)
+        if(cellsToWin === 0) {
+            victory(cell)
+        }
+
 
         if (cells[row][column].cntNeighbors > 0)
             return
@@ -234,8 +238,10 @@ document.addEventListener("DOMContentLoaded", () => {
         time.textContent = currentTime
     }
 
-    function victory() {
-
+    function victory(cell) {
+        setTimeout(() => {
+            alert("Victory")
+        }, 2000);
     }
 
     gameLoop()
